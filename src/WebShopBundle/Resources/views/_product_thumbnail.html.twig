@@ -1,0 +1,23 @@
+<div class="thumbnail">
+ <img src="{{ vich_uploader_asset(product, "imageFile") }}" alt="{{ product.name }}">
+    <div class="caption">
+	{% if product.hasActivePromotion %}
+	 <div class=""><strong>Promotion: {{ product.actualPromotion }}</strong></div>
+        <div class="h4"><span class="text-danger"><s>{{ product.originalPrice }}</s></span></div>
+		{% endif %}
+        <h4 class="pull-right">€{{ product.price|number_format(2) }}</h4>
+        <h4><a href="#">{{ product.name }}</a></h4>
+        <p>{{ product.description }}</p>
+		
+		<p class="text">
+        <form method="post" action="{{ path("user_cart_add", {"id": product.id}) }}"
+              style="display: inline-block">
+            <button class="btn btn-primary" type="submit"><span
+                        class="glyphicon glyphicon-shopping-cart"></span> Add to Cart
+            </button>
+        </form>
+        <a href="{{ path("products_view_product", {"slug": product.slug}) }}" class="btn btn-default"
+           role="button">Details</a>
+        </p>
+    </div>
+</div>
